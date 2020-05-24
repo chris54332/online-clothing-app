@@ -44,16 +44,6 @@ class SignUp extends React.Component {
         confirmPassword: ''
       });
     } catch (error) {
-      switch (error.code) {
-        case 'auth/email-already-in-use':
-          alert('Email is already in use');
-          break;
-        case 'auth/weak-password':
-          alert('Password is too short');
-          break;
-        default:
-          alert(`error occured: ${error.code}`);
-      }
       console.error(error);
     }
   };
