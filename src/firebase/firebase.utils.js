@@ -13,8 +13,11 @@ const config = {
   measurementId: "G-WXSJ2D4X3K"
 };
 
+firebase.initializeApp(config);
+
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
+
   const userRef = firestore.doc(`users/${userAuth.uid}`);
 
   const snapShot = await userRef.get();
@@ -35,23 +38,16 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     }
 
   }
-  
-  return userRef;
-}
 
-firebase.initializeApp(config);
+  return userRef;
+};
+
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
-export const signInWithGoogle = () => auth.signInWithPopup(provider)
-// .then(function(result) {
-//     // This gives you a Google Access Token.
-//     var token = result.credential.accessToken;
-//     // The signed-in user info.
-//     var user = result.user;
-//    });
+export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 export default firebase;
