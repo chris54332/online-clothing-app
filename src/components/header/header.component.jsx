@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createStructuredSelector} from 'reselect';
+import { createStructuredSelector } from 'reselect';
+
 import { auth } from '../../firebase/firebase.utils';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
-
-import { selectCurrentUser } from '../../redux/user/user.selector';
 import { selectCartHidden } from '../../redux/cart/cart.selectors';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
@@ -30,16 +30,13 @@ const Header = ({ currentUser, hidden }) => (
           SIGN OUT
         </div>
       ) : (
-          <Link className='option' to='/signin'>
-            SIGN IN
-          </Link>
-        )}
+        <Link className='option' to='/signin'>
+          SIGN IN
+        </Link>
+      )}
       <CartIcon />
     </div>
-    {
-      hidden ? null :
-        <CartDropdown />
-    }
+    {hidden ? null : <CartDropdown />}
   </div>
 );
 
